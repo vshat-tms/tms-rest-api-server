@@ -179,6 +179,7 @@ app.put('/users/:userId', (req, res) => {
     }
 
     const newUser = userOrError
+    newUser.id = reqId
 
     data.users = data.users.map(u => {
         if (u.id === newUser.id) {
@@ -188,7 +189,7 @@ app.put('/users/:userId', (req, res) => {
     })
     saveData()
 
-    return res.json(user);
+    return res.json(newUser);
 });
 
 app.delete('/users/:userId', (req, res) => {
